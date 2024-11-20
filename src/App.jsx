@@ -5,12 +5,12 @@ import Loader from './common/Loader';
 import PageTitle from './components/PageTitle';
 import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
-import Calendar from './pages/Calendar';
-import ECommerce from './pages/Dashboard/ECommerce';
-import Profile from './pages/Profile';
-import Settings from './pages/Settings';
-import Tables from './pages/Tables';
 import DefaultLayout from './layout/DefaultLayout';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Calendar from './pages/Dashboard/Calendar';
+import Profile from './pages/Dashboard/Profile';
+import Tables from './pages/Dashboard/Tables';
+import Settings from './pages/Dashboard/Settings';
 
 function Routers() {
   const [loading, setLoading] = useState(true);
@@ -35,7 +35,7 @@ function Routers() {
           element={
             <>
               <PageTitle title="ECommerce Dashboard" />
-              <ECommerce />
+              <Dashboard />
             </>
           }
         />

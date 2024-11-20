@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import SidebarLinkGroup from './SidebarLinkGroup.jsx';
-import Logo from '../../images/logo/logo.png';
-import { FiShoppingBag } from 'react-icons/fi';
-import { GoChecklist } from 'react-icons/go';
-import { MdDashboard } from 'react-icons/md';
-import { TiUserAddOutline } from 'react-icons/ti';
-import { ImPower } from 'react-icons/im';
-import { IoMdSettings } from 'react-icons/io';
+import React, { useEffect, useRef, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import SidebarLinkGroup from "./SidebarLinkGroup.jsx";
+import Logo from "../../images/logo/logo.png";
+import { FiShoppingBag } from "react-icons/fi";
+import { GoChecklist } from "react-icons/go";
+import { MdDashboard } from "react-icons/md";
+import { TiUserAddOutline } from "react-icons/ti";
+import { ImPower } from "react-icons/im";
+import { IoMdSettings } from "react-icons/io";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
@@ -16,9 +16,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const trigger = useRef(null);
   const sidebar = useRef(null);
 
-  const storedSidebarExpanded = localStorage.getItem('sidebar-expanded');
+  const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
   const [sidebarExpanded, setSidebarExpanded] = useState(
-    storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true'
+    storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
 
   // Close sidebar on click outside
@@ -33,8 +33,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         return;
       setSidebarOpen(false);
     };
-    document.addEventListener('click', clickHandler);
-    return () => document.removeEventListener('click', clickHandler);
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
   });
 
   // Close sidebar if the Esc key is pressed
@@ -43,17 +43,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       if (!sidebarOpen || keyCode !== 27) return;
       setSidebarOpen(false);
     };
-    document.addEventListener('keydown', keyHandler);
-    return () => document.removeEventListener('keydown', keyHandler);
+    document.addEventListener("keydown", keyHandler);
+    return () => document.removeEventListener("keydown", keyHandler);
   });
 
   // Save expanded state to localStorage
   useEffect(() => {
-    localStorage.setItem('sidebar-expanded', sidebarExpanded.toString());
+    localStorage.setItem("sidebar-expanded", sidebarExpanded.toString());
     if (sidebarExpanded) {
-      document.querySelector('body')?.classList.add('sidebar-expanded');
+      document.querySelector("body")?.classList.add("sidebar-expanded");
     } else {
-      document.querySelector('body')?.classList.remove('sidebar-expanded');
+      document.querySelector("body")?.classList.remove("sidebar-expanded");
     }
   }, [sidebarExpanded]);
 
@@ -61,7 +61,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     <aside
       ref={sidebar}
       className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-[#FAF1E6] duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
-        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
       {/* Sidebar Header */}
@@ -104,8 +104,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 className={({ isActive }) =>
                   `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-[#364636] duration-300 ease-in-out ${
                     isActive
-                      ? 'bg-[#8CAB91] !text-white'
-                      : 'hover:bg-[#8CAB91] hover:text-white'
+                      ? "bg-[#8CAB91] !text-white"
+                      : "hover:bg-[#8CAB91] hover:text-white"
                   }`
                 }
               >
@@ -120,8 +120,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 className={({ isActive }) =>
                   `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-[#364636] duration-300 ease-in-out ${
                     isActive
-                      ? 'bg-[#8CAB91] !text-white'
-                      : 'hover:bg-[#8CAB91] hover:text-white'
+                      ? "bg-[#8CAB91] !text-white"
+                      : "hover:bg-[#8CAB91] hover:text-white"
                   }`
                 }
               >
@@ -136,8 +136,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 className={({ isActive }) =>
                   `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-[#364636] duration-300 ease-in-out ${
                     isActive
-                      ? 'bg-[#8CAB91] !text-white'
-                      : 'hover:bg-[#8CAB91] hover:text-white'
+                      ? "bg-[#8CAB91] !text-white"
+                      : "hover:bg-[#8CAB91] hover:text-white"
                   }`
                 }
               >
@@ -152,8 +152,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 className={({ isActive }) =>
                   `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-[#364636] duration-300 ease-in-out ${
                     isActive
-                      ? 'bg-[#8CAB91] !text-white'
-                      : 'hover:bg-[#8CAB91] hover:text-white'
+                      ? "bg-[#8CAB91] !text-white"
+                      : "hover:bg-[#8CAB91] hover:text-white"
                   }`
                 }
               >
@@ -168,8 +168,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 className={({ isActive }) =>
                   `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-[#364636] duration-300 ease-in-out ${
                     isActive
-                      ? 'bg-[#8CAB91] !text-white'
-                      : 'hover:bg-[#8CAB91] hover:text-white'
+                      ? "bg-[#8CAB91] !text-white"
+                      : "hover:bg-[#8CAB91] hover:text-white"
                   }`
                 }
               >
@@ -179,26 +179,29 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             </li>
             {/* Settings Dropdown */}
             <SidebarLinkGroup
-              activeCondition={pathname === '/auth' || pathname.includes('auth')}
+              activeCondition={
+                pathname === "/auth" || pathname.includes("auth")
+              }
             >
               {(handleClick, open) => (
                 <>
                   <NavLink
                     to="#"
                     className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-[#364636] duration-300 ease-in-out hover:bg-[#8CAB91] hover:text-white ${
-                      pathname.includes('auth') &&
-                      'bg-[#8CAB91] !text-white'
+                      pathname.includes("auth") && "bg-[#8CAB91] !text-white"
                     }`}
                     onClick={(e) => {
                       e.preventDefault();
-                      sidebarExpanded ? handleClick() : setSidebarExpanded(true);
+                      sidebarExpanded
+                        ? handleClick()
+                        : setSidebarExpanded(true);
                     }}
                   >
                     <IoMdSettings className="text-2xl" />
                     Settings
                     <svg
                       className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
-                        open && 'rotate-180'
+                        open && "rotate-180"
                       }`}
                       width="20"
                       height="20"
@@ -217,30 +220,30 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                   {/* Dropdown Menu */}
                   <div
                     className={`translate transform overflow-hidden ${
-                      !open && 'hidden'
+                      !open && "hidden"
                     }`}
                   >
                     <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                       <li>
                         <NavLink
-                          to="/auth/signin"
+                          to="/settings/termsAndConditions"
                           className={({ isActive }) =>
-                            'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-[#364636] duration-300 ease-in-out hover:text-white ' +
-                            (isActive && '!text-white')
+                            "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-[#364636] duration-300 ease-in-out hover:text-white " +
+                            (isActive && "!text-white")
                           }
                         >
-                          Sign In
+                          Terms & condition
                         </NavLink>
                       </li>
                       <li>
                         <NavLink
-                          to="/auth/signup"
+                          to="/settings/privacyAndPolicy"
                           className={({ isActive }) =>
-                            'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-[#364636] duration-300 ease-in-out hover:text-white ' +
-                            (isActive && '!text-white')
+                            "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-[#364636] duration-300 ease-in-out hover:text-white " +
+                            (isActive && "!text-white")
                           }
                         >
-                          Sign Up
+                          Privacy policy
                         </NavLink>
                       </li>
                     </ul>
