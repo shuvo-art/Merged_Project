@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 
 import Loader from "./common/Loader";
 import PageTitle from "./components/PageTitle";
@@ -11,7 +11,8 @@ import Tables from "./pages/Dashboard/Tables";
 import Settings from "./pages/Dashboard/Settings";
 import TermsAndCondition from "./pages/Dashboard/TermsAndCondition";
 import PrivacyAndPolicy from "./pages/Dashboard/PrivacyAndPolicy";
-import LoginForm from "./pages/Authentication/LoginForm";
+import SignIn from "./pages/Authentication/SignIn";
+import PrivateRoute from "./Private/PrivateRoutes";
 
 function Routers() {
   const [loading, setLoading] = useState(true);
@@ -26,22 +27,25 @@ function Routers() {
     return () => clearTimeout(timer); // Cleanup the timeout on unmount
   }, []);
 
-  return loading ? (
-    <Loader />
-  ) : (
-    <DefaultLayout>
-      <Routes>
+  if (loading) return <Loader />;
+
+  return (
+    <Routes>
+      {/* Public Route */}
+      <Route path="/auth/signin" element={<SignIn />} />
+
+      {/* Private Routes */}
+      <Route
+        path="/"
+        element={
+          <PrivateRoute>
+            <DefaultLayout />
+          </PrivateRoute>
+        }
+      >
+        <Route index element={<Dashboard />} />
         <Route
-          path="/"
-          element={
-            <>
-              <PageTitle title="ECommerce Dashboard" />
-              <Dashboard />
-            </>
-          }
-        />
-        <Route
-          path="/calendar"
+          path="calendar"
           element={
             <>
               <PageTitle title="Calendar" />
@@ -50,7 +54,7 @@ function Routers() {
           }
         />
         <Route
-          path="/profile"
+          path="profile"
           element={
             <>
               <PageTitle title="Profile" />
@@ -59,7 +63,7 @@ function Routers() {
           }
         />
         <Route
-          path="/tables"
+          path="tables"
           element={
             <>
               <PageTitle title="Tables" />
@@ -68,7 +72,7 @@ function Routers() {
           }
         />
         <Route
-          path="/settings"
+          path="settings"
           element={
             <>
               <PageTitle title="Settings" />
@@ -77,7 +81,7 @@ function Routers() {
           }
         />
         <Route
-          path="/settings/termsAndConditions"
+          path="settings/termsAndConditions"
           element={
             <>
               <PageTitle title="Terms and Conditions" />
@@ -86,7 +90,7 @@ function Routers() {
           }
         />
         <Route
-          path="/settings/privacyAndPolicy"
+          path="settings/privacyAndPolicy"
           element={
             <>
               <PageTitle title="Privacy And Policy" />
@@ -94,17 +98,11 @@ function Routers() {
             </>
           }
         />
-        <Route
-          path="/auth/signin"
-          element={
-            <>
-              <PageTitle title="Sign In" />
-              <LoginForm />
-            </>
-          }
-        />
-      </Routes>
-    </DefaultLayout>
+      </Route>
+
+      {/* Fallback Route */}
+      <Route path="*" element={<Navigate to="/auth/signin" />} />
+    </Routes>
   );
 }
 

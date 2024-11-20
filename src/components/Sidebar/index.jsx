@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import SidebarLinkGroup from "./SidebarLinkGroup.jsx";
 import Logo from "../../images/logo/logo.png";
 import { FiShoppingBag } from "react-icons/fi";
@@ -7,14 +7,19 @@ import { GoChecklist } from "react-icons/go";
 import { MdDashboard } from "react-icons/md";
 import { TiUserAddOutline } from "react-icons/ti";
 import { ImPower } from "react-icons/im";
-import { IoMdSettings } from "react-icons/io";
+import { IoIosLogOut, IoMdSettings } from "react-icons/io";
+import { BiLogOut } from "react-icons/bi";
+import { AuthContext } from "../../context/AuthContext.jsx";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
   const { pathname } = location;
+  
 
   const trigger = useRef(null);
   const sidebar = useRef(null);
+
+  const { logout } = useContext(AuthContext); 
 
   const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
   const [sidebarExpanded, setSidebarExpanded] = useState(
@@ -57,10 +62,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     }
   }, [sidebarExpanded]);
 
+    
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-[#FAF1E6] duration-300 ease-linear  lg:static lg:translate-x-0 ${
+      className={`relative left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-[#FAF1E6] duration-300 ease-linear  lg:static lg:translate-x-0 ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -93,9 +99,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       </div>
       {/* Sidebar Header */}
 
-      <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
+      <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear ">
         {/* Sidebar Menu */}
-        <nav className="mt-5 py-4 px-4 lg:mt-3 lg:px-3">
+        <nav className="mt-5 py-4 px-4 lg:mt-3 lg:px-3 ">
           <ul className="mb-6 flex flex-col gap-1.5">
             {/* Dashboard */}
             <li>
@@ -254,6 +260,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           </ul>
         </nav>
         {/* Sidebar Menu */}
+        <button
+          className="absolute bottom-20 right-20 flex items-center justify-center gap-1 cursor-pointer"
+          onClick={logout} // Attach the logout handler
+        >
+          <BiLogOut className="text-red-500 text-2xl rotate-180" />
+          <p className="text-[#364636] text-base font-medium">Logout</p>
+        </button>
       </div>
     </aside>
   );

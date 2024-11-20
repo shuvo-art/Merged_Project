@@ -1,35 +1,33 @@
-import React, { useState } from 'react';
-import Header from '../components/Header/index.jsx';
-import Sidebar from '../components/Sidebar/index.jsx';
+import React, { useState, useContext } from "react";
+import { Outlet } from "react-router-dom";
+import Header from "../components/Header/index.jsx";
+import Sidebar from "../components/Sidebar/index.jsx";
+import { AuthContext } from "../context/AuthContext.jsx";
 
-const DefaultLayout = ({ children }) => {
+const DefaultLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { auth } = useContext(AuthContext);
+
+  if (!auth?.token) {
+    return null; // Render nothing if the user is not authenticated
+  }
 
   return (
-    <div className="">
-      {/* <!-- ===== Page Wrapper Start ===== --> */}
-      <div className="flex h-screen overflow-hidden">
-        {/* <!-- ===== Sidebar Start ===== --> */}
-        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        {/* <!-- ===== Sidebar End ===== --> */}
+    <div className="flex h-screen overflow-hidden">
+      {/* Sidebar */}
+      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-        {/* <!-- ===== Content Area Start ===== --> */}
-        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-          {/* <!-- ===== Header Start ===== --> */}
-          <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-          {/* <!-- ===== Header End ===== --> */}
+      {/* Content Area */}
+      <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-          {/* <!-- ===== Main Content Start ===== --> */}
-          <main>
-            <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-              {children}
-            </div>
-          </main>
-          {/* <!-- ===== Main Content End ===== --> */}
-        </div>
-        {/* <!-- ===== Content Area End ===== --> */}
+        {/* Main Content */}
+        <main>
+          <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+            <Outlet /> {/* Render route-specific components */}
+          </div>
+        </main>
       </div>
-      {/* <!-- ===== Page Wrapper End ===== --> */}
     </div>
   );
 };
