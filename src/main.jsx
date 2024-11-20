@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import './css/style.css';
 import './css/satoshi.css';
-import Routers from './routes/router';
+import Routers from './routes/router.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
