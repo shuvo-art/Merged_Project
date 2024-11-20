@@ -14,12 +14,11 @@ import { AuthContext } from "../../context/AuthContext.jsx";
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
   const { pathname } = location;
-  
 
   const trigger = useRef(null);
   const sidebar = useRef(null);
 
-  const { logout } = useContext(AuthContext); 
+  const { logout } = useContext(AuthContext);
 
   const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
   const [sidebarExpanded, setSidebarExpanded] = useState(
@@ -62,7 +61,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     }
   }, [sidebarExpanded]);
 
-    
   return (
     <aside
       ref={sidebar}
@@ -101,16 +99,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear ">
         {/* Sidebar Menu */}
-        <nav className="mt-5 py-4 px-4 lg:mt-3 lg:px-3 ">
-          <ul className="mb-6 flex flex-col gap-1.5">
+        <nav className="mt-5 py-4 lg:mt-3 ">
+          <ul className="mb-6 flex flex-col gap-1.5 ">
             {/* Dashboard */}
             <li>
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-[#364636] duration-300 ease-in-out ${
+                  `group relative flex items-center gap-2.5 rounded-sm py-2 px-8 font-medium text-[#364636] duration-300 ease-in-out ${
                     isActive
-                      ? "bg-[#8CAB91] !text-white"
+                      ? "bg-[#8CAB91] !text-white before:content-[''] before:absolute before:top-0 before:left-2 before:h-full before:w-3 before:bg-[#FAF1E6]"
                       : "hover:bg-[#8CAB91] hover:text-white"
                   }`
                 }
@@ -122,11 +120,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             {/* Calendar */}
             <li>
               <NavLink
-                to="/calendar"
+                to="/orderManagement"
                 className={({ isActive }) =>
-                  `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-[#364636] duration-300 ease-in-out ${
+                  `group relative flex items-center gap-2.5 rounded-sm py-2 px-8 font-medium text-[#364636] duration-300 ease-in-out ${
                     isActive
-                      ? "bg-[#8CAB91] !text-white"
+                      ? "bg-[#8CAB91] !text-white before:content-[''] before:absolute before:top-0 before:left-2 before:h-full before:w-3 before:bg-[#FAF1E6]"
                       : "hover:bg-[#8CAB91] hover:text-white"
                   }`
                 }
@@ -138,11 +136,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             {/* Profile */}
             <li>
               <NavLink
-                to="/profile"
+                to="/addQuestionnaire"
                 className={({ isActive }) =>
-                  `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-[#364636] duration-300 ease-in-out ${
+                  `group relative flex items-center gap-2.5 rounded-sm py-2 px-8 font-medium text-[#364636] duration-300 ease-in-out ${
                     isActive
-                      ? "bg-[#8CAB91] !text-white"
+                      ? "bg-[#8CAB91] !text-white before:content-[''] before:absolute before:top-0 before:left-2 before:h-full before:w-3 before:bg-[#FAF1E6]"
                       : "hover:bg-[#8CAB91] hover:text-white"
                   }`
                 }
@@ -154,11 +152,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             {/* Tables */}
             <li>
               <NavLink
-                to="/tables"
+                to="/makeAdmin"
                 className={({ isActive }) =>
-                  `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-[#364636] duration-300 ease-in-out ${
+                  `group relative flex items-center gap-2.5 rounded-sm py-2 px-8 font-medium text-[#364636] duration-300 ease-in-out ${
                     isActive
-                      ? "bg-[#8CAB91] !text-white"
+                      ? "bg-[#8CAB91] !text-white before:content-[''] before:absolute before:top-0 before:left-2 before:h-full before:w-3 before:bg-[#FAF1E6]"
                       : "hover:bg-[#8CAB91] hover:text-white"
                   }`
                 }
@@ -170,11 +168,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             {/* Subscription */}
             <li>
               <NavLink
-                to="/settings"
+                to="/subscription"
                 className={({ isActive }) =>
-                  `group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-[#364636] duration-300 ease-in-out ${
+                  `group relative flex items-center gap-2.5 rounded-sm py-2 px-8 font-medium text-[#364636] duration-300 ease-in-out ${
                     isActive
-                      ? "bg-[#8CAB91] !text-white"
+                      ? "bg-[#8CAB91] !text-white before:content-[''] before:absolute before:top-0 before:left-2 before:h-full before:w-3 before:bg-[#FAF1E6]"
                       : "hover:bg-[#8CAB91] hover:text-white"
                   }`
                 }
@@ -193,9 +191,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 <>
                   <NavLink
                     to="#"
-                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-[#364636] duration-300 ease-in-out hover:bg-[#8CAB91] hover:text-white ${
-                      pathname.includes("auth") && "bg-[#8CAB91] !text-white"
-                    }`}
+                    className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-8 font-medium text-[#364636] duration-300 ease-in-out hover:bg-[#8CAB91] hover:text-white`}
                     onClick={(e) => {
                       e.preventDefault();
                       sidebarExpanded
@@ -229,13 +225,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                       !open && "hidden"
                     }`}
                   >
-                    <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                    <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 ">
                       <li>
                         <NavLink
                           to="/settings/termsAndConditions"
                           className={({ isActive }) =>
-                            "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-[#364636] duration-300 ease-in-out hover:text-white " +
-                            (isActive && "!text-white")
+                            "group relative flex items-center gap-2.5 hover:!bg-[#8CAB91] hover:!text-white  px-16 py-2 font-medium text-[#364636] duration-300 ease-in-out " +
+                            (isActive && "!bg-[#8CAB91] !text-white before:content-[''] before:absolute before:top-0 before:left-2 before:h-full before:w-3 before:bg-[#FAF1E6]")
                           }
                         >
                           Terms & condition
@@ -245,8 +241,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                         <NavLink
                           to="/settings/privacyAndPolicy"
                           className={({ isActive }) =>
-                            "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-[#364636] duration-300 ease-in-out hover:text-white " +
-                            (isActive && "!text-white")
+                            "group relative flex items-center hover:!bg-[#8CAB91] hover:!text-white gap-2.5  px-16 py-2  font-medium text-[#364636] duration-300 ease-in-out " +
+                            (isActive && "!bg-[#8CAB91] !text-white before:content-[''] before:absolute before:top-0 before:left-2 before:h-full before:w-3 before:bg-[#FAF1E6]")
                           }
                         >
                           Privacy policy

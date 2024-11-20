@@ -5,14 +5,15 @@ import Loader from "./common/Loader";
 import PageTitle from "./components/PageTitle";
 import DefaultLayout from "./layout/DefaultLayout";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import Calendar from "./pages/Dashboard/Calendar";
 import Profile from "./pages/Dashboard/Profile";
-import Tables from "./pages/Dashboard/Tables";
-import Settings from "./pages/Dashboard/Settings";
 import TermsAndCondition from "./pages/Dashboard/TermsAndCondition";
 import PrivacyAndPolicy from "./pages/Dashboard/PrivacyAndPolicy";
 import SignIn from "./pages/Authentication/SignIn";
 import PrivateRoute from "./Private/PrivateRoutes";
+import OrderManagement from "./pages/Dashboard/OrderManagement";
+import AddQuestionnaire from "./pages/Dashboard/AddQuestionnaire";
+import MakeAdmin from "./pages/Dashboard/MakeAdmin";
+import Subscription from "./pages/Authentication/Subscription";
 
 function Routers() {
   const [loading, setLoading] = useState(true);
@@ -43,13 +44,21 @@ function Routers() {
           </PrivateRoute>
         }
       >
-        <Route index element={<Dashboard />} />
         <Route
-          path="calendar"
+          index
           element={
             <>
-              <PageTitle title="Calendar" />
-              <Calendar />
+              <PageTitle title={"alwways | Dashboard"} />
+              <Dashboard />
+            </>
+          }
+        />
+        <Route
+          path="orderManagement"
+          element={
+            <>
+              <PageTitle title="alwways | Order Management" />
+              <OrderManagement />
             </>
           }
         />
@@ -57,26 +66,35 @@ function Routers() {
           path="profile"
           element={
             <>
-              <PageTitle title="Profile" />
+              <PageTitle title="alwways | Profile" />
               <Profile />
             </>
           }
         />
         <Route
-          path="tables"
+          path="addQuestionnaire"
           element={
             <>
-              <PageTitle title="Tables" />
-              <Tables />
+              <PageTitle title="alwways | Add Questionnaire" />
+              <AddQuestionnaire />
             </>
           }
         />
         <Route
-          path="settings"
+          path="makeAdmin"
           element={
             <>
-              <PageTitle title="Settings" />
-              <Settings />
+              <PageTitle title="alwways | Make Admin" />
+              <MakeAdmin />
+            </>
+          }
+        />
+        <Route
+          path="subscription"
+          element={
+            <>
+              <PageTitle title="alwways | Subscription" />
+              <Subscription />
             </>
           }
         />
