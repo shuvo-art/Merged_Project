@@ -76,6 +76,24 @@ function Routers() {
           }
         />
         <Route
+          path="/settings/termsAndConditions"
+          element={
+            <>
+              <PageTitle title="Terms and Conditions" />
+              <Settings />
+            </>
+          }
+        />
+        <Route
+          path="/settings/privacyAndPolicy"
+          element={
+            <>
+              <PageTitle title="Privacy And Policy" />
+              <Settings />
+            </>
+          }
+        />
+        <Route
           path="/auth/signin"
           element={
             <>
