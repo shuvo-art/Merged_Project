@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import SidebarLinkGroup from './SidebarLinkGroup.jsx';
-import Logo from '../../../images/logo/logo.png';
+import Logo from '../../images/logo/logo.png';
 import { FiShoppingBag } from 'react-icons/fi';
 import { GoChecklist } from 'react-icons/go';
 import { MdDashboard } from 'react-icons/md';

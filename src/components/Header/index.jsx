@@ -4,7 +4,7 @@ import DropdownMessage from './DropdownMessage.jsx';
 import DropdownNotification from './DropdownNotification.jsx';
 import DropdownUser from './DropdownUser.jsx';
 import DarkModeSwitcher from './DarkModeSwitcher.jsx';
-import LogoIcon from '../../../images/logo/logo.png';
+import LogoIcon from '../../images/logo/logo.png';
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
   return (
