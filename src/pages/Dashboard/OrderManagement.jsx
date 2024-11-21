@@ -1,8 +1,11 @@
 import React from 'react'
+import UserTable from '../../components/Dashboard/Table/UserTable'
 
 const OrderManagement = () => {
   return (
-    <div>OrderManagement</div>
+    <div>
+      <UserTable />
+    </div>
   )
 }
 
