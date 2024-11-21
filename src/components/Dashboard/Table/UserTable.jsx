@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import FilterBar from "./FilterBar.jsx";
 import Table from "./Table.jsx";
+import UserModal from "./UserModal.jsx";
+import { AnimatePresence } from "framer-motion";
 
 const dummyData = [
   {
@@ -96,7 +98,10 @@ const dummyData = [
 const UserTable = () => {
   const [search, setSearch] = useState("");
   const [subscription, setSubscription] = useState("");
-  const [sortOrder, setSortOrder] = useState("start-end");
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [sortOrder, setSortOrder] = useState("start-end"); // Sorting state
+  const [selectedUser, setSelectedUser] = useState(null); // State for selected user
 
   const filteredData = dummyData
     .filter((item) => {
@@ -116,6 +121,10 @@ const UserTable = () => {
       }
     });
 
+  const handleRowClick = (user) => {
+    setSelectedUser(user); // Set the selected user to open the modal
+  };
+
   return (
     <div className="p-6">
       <h1 className="text-xl font-bold mb-4">Subscriber</h1>
@@ -124,10 +133,22 @@ const UserTable = () => {
         setSearch={setSearch}
         subscription={subscription}
         setSubscription={setSubscription}
+        startDate={startDate}
+        setStartDate={setStartDate}
+        endDate={endDate}
+        setEndDate={setEndDate}
         sortOrder={sortOrder}
         setSortOrder={setSortOrder}
       />
-      <Table data={filteredData} />
+      <Table data={filteredData} onRowClick={handleRowClick} />
+      <AnimatePresence>
+        {selectedUser && (
+          <UserModal
+            user={selectedUser}
+            onClose={() => setSelectedUser(null)} // Close modal
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

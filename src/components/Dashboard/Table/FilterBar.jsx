@@ -10,6 +10,7 @@ const FilterBar = ({
 }) => {
   return (
     <div className="flex flex-wrap items-center justify-between mb-4">
+      {/* Search Input */}
       <input
         type="text"
         placeholder="Search"
@@ -18,6 +19,7 @@ const FilterBar = ({
         className="border rounded px-4 py-2 w-1/3"
       />
 
+      {/* Subscription Dropdown */}
       <select
         value={subscription}
         onChange={(e) => setSubscription(e.target.value)}
@@ -28,6 +30,7 @@ const FilterBar = ({
         <option value="Premium">Premium</option>
       </select>
 
+      {/* Sorting Dropdown */}
       <div className="relative w-1/4">
         <select
           value={sortOrder}
