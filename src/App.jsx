@@ -66,7 +66,7 @@ function Routers() {
           path="profile"
           element={
             <>
-              <PageTitle title="alwways |  Profile" />
+              <PageTitle title="alwways | Profile" />
               <Profile />
             </>
           }
