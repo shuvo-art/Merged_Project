@@ -43,9 +43,7 @@ const VerificationCode = () => {
 
         {/* Verification Code Section */}
         <div className="flex-1 w-full max-w-md text-center">
-          <button className="absolute top-6 right-6 bg-green-100 text-green-700 rounded-full p-2">
-            ✕
-          </button>
+          
           <h2 className="text-xl font-semibold text-gray-700 mb-2">
             Congratulations!
           </h2>
