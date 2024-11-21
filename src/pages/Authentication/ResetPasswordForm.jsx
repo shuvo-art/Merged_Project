@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import login_image from "../../images/login/login_page_logo.png";
 import { IoEyeOffOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const ResetPasswordForm = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -97,12 +98,20 @@ const ResetPasswordForm = () => {
             </div>
 
             {/* Submit Button */}
-            <button
+            {/* For the testing purpose */}
+            <Link
+              to={"/auth/congratulations"}
+              className="w-[430px] h-12 py-4 px-8 bg-[#8CAB91] text-[#FAF1E6] hover:text-white rounded-3xl text-base flex items-center justify-center hover:scale-105 duration-200"
+            >
+              CONFIRM PASSWORD
+            </Link>
+            {/* The real code snippet */}
+            {/* <button
               type="submit"
               className="w-[430px] h-12 py-4 px-8 bg-[#8CAB91] text-[#FAF1E6] hover:text-white rounded-3xl text-base flex items-center justify-center hover:scale-105 duration-200"
             >
               CONFIRM PASSWORD
-            </button>
+            </button> */}
           </form>
         </div>
       </div>

@@ -17,6 +17,7 @@ import Subscription from "./pages/Authentication/Subscription";
 import ForgotPassword from "./pages/Authentication/ForgotPasswordForm";
 import VerificationCode from "./pages/Authentication/OTPVerificationForm";
 import ResetPasswordForm from "./pages/Authentication/ResetPasswordForm";
+import Congratulations from "./pages/Authentication/Congratulations";
 
 function Routers() {
   const [loading, setLoading] = useState(true);
@@ -40,6 +41,7 @@ function Routers() {
       <Route path="/auth/forgetPassword" element={<ForgotPassword />} />
       <Route path="/auth/verifyOTP" element={<VerificationCode />} />
       <Route path="/auth/reset-password" element={<ResetPasswordForm />} />
+      <Route path="auth/congratulations" element={<Congratulations />} />
 
       {/* Private Routes */}
       <Route
