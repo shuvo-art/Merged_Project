@@ -6,6 +6,7 @@ import { GrLineChart } from "react-icons/gr";
 import IncomeReport from "../../components/Dashboard/IncomeReport";
 import UserGrowth from "../../components/Dashboard/UserGrowth";
 import SubscriberGrowth from "../../components/Dashboard/SubscriberGrowth";
+import UserTable from "../../components/Dashboard/Table/UserTable";
 
 const Dashboard = () => {
   return (
@@ -38,6 +39,7 @@ const Dashboard = () => {
       <div className="mt-6">
         <IncomeReport />
       </div>
+      <UserTable />
     </div>
   );
 };

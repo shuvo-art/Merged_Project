@@ -9,7 +9,7 @@ const StatCard = ({
   growthIcon, // Optional growth icon
 }) => {
   return (
-    <div className="flex items-center justify-center px-6 py-14 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 gap-10">
+    <div className="flex items-center justify-center px-6 py-14 bg-white rounded-lg transition-shadow duration-200 gap-10">
       {/* Icon Section */}
       <div className="text-4xl text-gray-500">{icon}</div>
 
