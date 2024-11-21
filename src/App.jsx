@@ -14,6 +14,9 @@ import OrderManagement from "./pages/Dashboard/OrderManagement";
 import AddQuestionnaire from "./pages/Dashboard/AddQuestionnaire";
 import MakeAdmin from "./pages/Dashboard/MakeAdmin";
 import Subscription from "./pages/Authentication/Subscription";
+import ForgotPassword from "./pages/Authentication/ForgotPasswordForm";
+import VerificationCode from "./pages/Authentication/OTPVerificationForm";
+import ResetPasswordForm from "./pages/Authentication/ResetPasswordForm";
 
 function Routers() {
   const [loading, setLoading] = useState(true);
@@ -34,6 +37,9 @@ function Routers() {
     <Routes>
       {/* Public Route */}
       <Route path="/auth/signin" element={<SignIn />} />
+      <Route path="/auth/forgetPassword" element={<ForgotPassword />} />
+      <Route path="/auth/verifyOTP" element={<VerificationCode />} />
+      <Route path="/auth/reset-password" element={<ResetPasswordForm />} />
 
       {/* Private Routes */}
       <Route
