@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import DropdownMessage from './DropdownMessage.jsx';
 import DropdownNotification from './DropdownNotification.jsx';
 import DropdownUser from './DropdownUser.jsx';
 import LogoIcon from '../../images/logo/logo.png';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
+
+  const {auth} = useContext(AuthContext)
+  console.log({auth})
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1   ">
       <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11">

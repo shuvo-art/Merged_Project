@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
@@ -11,7 +11,15 @@ const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { login, auth } = useContext(AuthContext);
+0
+
+  // redirect if token exists
+  useEffect(() => {
+    if(auth.token) {
+      return navigate("/"); // Redirect to dashboard if token exists
+    }
+  }, [auth])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
