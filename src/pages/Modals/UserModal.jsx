@@ -24,10 +24,10 @@ const UserModal = ({ user, onClose }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <motion.div
         className="bg-white rounded-lg shadow-lg w-1/3 relative"
+        variants={modalVariants}
         initial="hidden"
         animate="visible"
         exit="exit"
-        variants={modalVariants}
         transition={{ duration: 0.5, ease: "easeInOut" }} // Smooth animation
       >
         {/* Modal Header */}
@@ -38,7 +38,9 @@ const UserModal = ({ user, onClose }) => {
               alt={user.name}
               className="w-20 h-20 rounded-full"
             />
-            <h2 className="mt-2 text-lg font-semibold text-[#FAF1E6] ">{user.name}</h2>
+            <h2 className="mt-2 text-lg font-semibold text-[#FAF1E6] ">
+              {user.name}
+            </h2>
             <p className="text-sm text-[#FAF1E6]">{user.role || "User"}</p>
           </div>
           <button
