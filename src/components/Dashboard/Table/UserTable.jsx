@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FilterBar from "./FilterBar.jsx";
 import Table from "./Table.jsx";
-import UserModal from "./UserModal.jsx";
+import UserModal from "../../../pages/Modals/UserModal.jsx";
 import { AnimatePresence } from "framer-motion";
 
 const dummyData = [
