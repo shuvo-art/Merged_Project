@@ -18,6 +18,7 @@ import ForgotPassword from "./pages/Authentication/ForgotPasswordForm";
 import VerificationCode from "./pages/Authentication/OTPVerificationForm";
 import ResetPasswordForm from "./pages/Authentication/ResetPasswordForm";
 import Congratulations from "./pages/Authentication/Congratulations";
+import PreviewQuestion from "./components/Dashboard/Questionnarie/PreviewQuestion";
 
 function Routers() {
   const [loading, setLoading] = useState(true);
@@ -85,6 +86,15 @@ function Routers() {
             <>
               <PageTitle title="alwways | Add Questionnaire" />
               <AddQuestionnaire />
+            </>
+          }
+        />
+        <Route
+          path="/addQuestionnaire/previewQuestion/:sectionId"
+          element={
+            <>
+              <PageTitle title="alwways | Preview Questions" />
+              <PreviewQuestion />
             </>
           }
         />

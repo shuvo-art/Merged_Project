@@ -4,28 +4,23 @@ import { FaRegEdit } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 import Modal from "../Modals/Modal";
 import Swal from "sweetalert2";
-
-const initialSections = [
-  { id: 1, name: "Childhood", questionsAdded: 5, totalQuestions: 10 },
-  { id: 2, name: "Family", questionsAdded: 5, totalQuestions: 10 },
-  { id: 3, name: "Love", questionsAdded: 5, totalQuestions: 10 },
-  { id: 4, name: "Friends", questionsAdded: 5, totalQuestions: 10 },
-  { id: 5, name: "Others", questionsAdded: 5, totalQuestions: 10 },
-];
+import { Link, useNavigate } from "react-router-dom";
+import { initialSections } from "../../database/Questionnarie";
 
 const Questionnaire = () => {
   const [sections, setSections] = useState(initialSections);
-  const [showModal, setShowModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState("add");
   const [currentSection, setCurrentSection] = useState(null);
   const [sectionName, setSectionName] = useState("");
   const [sectionQuestions, setSectionQuestions] = useState("");
+  const navigate = useNavigate();
 
   const openAddModal = () => {
     setModalType("add");
     setSectionName("");
     setSectionQuestions("");
-    setShowModal(true);
+    setIsModalOpen(true);
   };
 
   const openEditModal = (section) => {
@@ -33,7 +28,7 @@ const Questionnaire = () => {
     setCurrentSection(section);
     setSectionName(section.name);
     setSectionQuestions(section.totalQuestions.toString());
-    setShowModal(true);
+    setIsModalOpen(true);
   };
 
   const handleAddSection = () => {
@@ -42,19 +37,24 @@ const Questionnaire = () => {
       name: sectionName || `New Section ${sections.length + 1}`,
       questionsAdded: 0,
       totalQuestions: parseInt(sectionQuestions, 10) || 10,
+      questions: [],
     };
     setSections([...sections, newSection]);
-    setShowModal(false);
+    setIsModalOpen(false);
   };
 
   const handleEditSection = () => {
     const updatedSections = sections.map((section) =>
       section.id === currentSection.id
-        ? { ...section, name: sectionName, totalQuestions: parseInt(sectionQuestions, 10) }
+        ? {
+            ...section,
+            name: sectionName,
+            totalQuestions: parseInt(sectionQuestions, 10),
+          }
         : section
     );
     setSections(updatedSections);
-    setShowModal(false);
+    setIsModalOpen(false);
   };
 
   const handleDeleteSection = (section) => {
@@ -69,7 +69,11 @@ const Questionnaire = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         setSections(sections.filter((s) => s.id !== section.id));
-        Swal.fire("Deleted!", `The section "${section.name}" has been deleted.`, "success");
+        Swal.fire(
+          "Deleted!",
+          `The section "${section.name}" has been deleted.`,
+          "success"
+        );
       }
     });
   };
@@ -85,6 +89,7 @@ const Questionnaire = () => {
           + Add new Section
         </button>
       </div>
+
       <div className="space-y-4">
         {sections.map((section) => (
           <div
@@ -92,15 +97,18 @@ const Questionnaire = () => {
             className="flex items-center justify-between bg-[#FFFDFA] p-4 rounded-lg shadow border border-[#8CAB91]"
           >
             <div>
-              <h2 className="text-2xl font-medium text-black">{section.name}</h2>
+              <h2 className="text-2xl font-medium text-black">
+                {section.name}
+              </h2>
               <p className="text-sm text-[#8CAB91]">
-                {section.questionsAdded}/{section.totalQuestions} Question Added
+                {section.questionsAdded}/{section.totalQuestions} Questions
+                Added
               </p>
             </div>
             <div className="flex items-center space-x-4 text-[#8CAB91]">
-              <button>
+              <Link to={`/addQuestionnaire/previewQuestion/${section.id}`}>
                 <IoEyeOutline className="text-2xl" />
-              </button>
+              </Link>
               <button onClick={() => handleDeleteSection(section)}>
                 <AiOutlineDelete className="text-2xl" />
               </button>
@@ -112,11 +120,10 @@ const Questionnaire = () => {
         ))}
       </div>
 
-      {/* Reusable Add/Edit Modal */}
       <Modal
         title={modalType === "add" ? "Add New Section" : "Edit Section"}
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
       >
         <div className="mb-4">
           <label className="block font-medium mb-1">Section Name</label>
@@ -129,7 +136,7 @@ const Questionnaire = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block font-medium mb-1">Number of questions</label>
+          <label className="block font-medium mb-1">Number of Questions</label>
           <input
             type="number"
             placeholder="Type here"
