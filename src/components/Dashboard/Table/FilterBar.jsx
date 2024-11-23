@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css"; // Base styles
+import "./customCalendar.css"; // Custom calendar styles (optional)
+import { FaCalendarAlt, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const FilterBar = ({
   search,
   setSearch,
   subscription,
   setSubscription,
-  sortOrder,
-  setSortOrder,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
 }) => {
+  const [showCalendar, setShowCalendar] = useState(false);
+
   return (
-    <div className="flex flex-wrap items-center justify-between mb-4">
+    <div className="flex flex-wrap items-center justify-between mb-4 space-y-4">
       {/* Search Input */}
       <input
         type="text"
         placeholder="Search"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="border rounded px-4 py-2 w-1/3"
+        className="border rounded px-4 py-2 w-1/3 relative top-2"
       />
 
       {/* Subscription Dropdown */}
@@ -30,16 +38,37 @@ const FilterBar = ({
         <option value="Premium">Premium</option>
       </select>
 
-      {/* Sorting Dropdown */}
-      <div className="relative w-1/4">
-        <select
-          value={sortOrder}
-          onChange={(e) => setSortOrder(e.target.value)}
-          className="border rounded px-4 py-2 w-full appearance-none"
+      {/* Date Range Dropdown */}
+      <div className="relative">
+        <button
+          onClick={() => setShowCalendar(!showCalendar)}
+          className="flex items-center space-x-2 bg-white border rounded-lg px-4 py-2 shadow-sm hover:shadow-md"
         >
-          <option value="start-end">Starting - Ending</option>
-          <option value="end-start">Ending - Starting</option>
-        </select>
+          <FaCalendarAlt />
+          <span>
+            {startDate && endDate
+              ? `${new Date(startDate).toLocaleDateString()} - ${new Date(
+                  endDate
+                ).toLocaleDateString()}`
+              : "Starting - Ending"}
+          </span>
+
+          {showCalendar ? <FaChevronUp /> : <FaChevronDown />}
+        </button>
+
+        {showCalendar && (
+          <div className="absolute z-50 right-0 top-10 mt-2 bg-white shadow-md rounded-lg p-4">
+            <Calendar
+              selectRange
+              onChange={(range) => {
+                setStartDate(range[0]);
+                setEndDate(range[1]);
+                setShowCalendar(false);
+              }}
+              value={[startDate, endDate]}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

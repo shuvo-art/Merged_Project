@@ -36,7 +36,7 @@ const dummyData = [
     location: "Canada",
     subscriptionType: "Premium",
     price: 112,
-    date: new Date(new Date().setDate(new Date().getDate() - 2)),
+    date: new Date(new Date().setDate(new Date().getDate() - 12)),
   },
   {
     id: "#12336",
@@ -47,7 +47,7 @@ const dummyData = [
     location: "Paris",
     subscriptionType: "Premium",
     price: 117,
-    date: new Date(new Date().setDate(new Date().getDate() - 3)),
+    date: new Date(new Date().setDate(new Date().getDate() - 13)),
   },
   {
     id: "#12337",
@@ -58,7 +58,7 @@ const dummyData = [
     location: "Canada",
     subscriptionType: "Free",
     price: 612,
-    date: new Date(new Date().setDate(new Date().getDate() - 3)),
+    date: new Date(new Date().setDate(new Date().getDate() - 23)),
   },
   {
     id: "#12338",
@@ -69,7 +69,7 @@ const dummyData = [
     location: "London",
     subscriptionType: "Premium",
     price: 631,
-    date: new Date(new Date().setDate(new Date().getDate() - 3)),
+    date: new Date(new Date().setDate(new Date().getDate() - 15)),
   },
   {
     id: "#12339",
@@ -80,7 +80,7 @@ const dummyData = [
     location: "Tokyo",
     subscriptionType: "Free",
     price: 151,
-    date: new Date(new Date().setDate(new Date().getDate() - 3)),
+    date: new Date(new Date().setDate(new Date().getDate() - 13)),
   },
   {
     id: "#12340",
@@ -95,34 +95,31 @@ const dummyData = [
   },
   // Add more items as needed
 ];
+
 const UserTable = () => {
   const [search, setSearch] = useState("");
   const [subscription, setSubscription] = useState("");
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [sortOrder, setSortOrder] = useState("start-end"); // Sorting state
-  const [selectedUser, setSelectedUser] = useState(null); // State for selected user
+  const [selectedUser, setSelectedUser] = useState(null);
 
-  const filteredData = dummyData
-    .filter((item) => {
-      const matchesSearch =
-        item.name.toLowerCase().includes(search.toLowerCase()) ||
-        item.email.toLowerCase().includes(search.toLowerCase());
-      const matchesSubscription = subscription
-        ? item.subscriptionType === subscription
-        : true;
-      return matchesSearch && matchesSubscription;
-    })
-    .sort((a, b) => {
-      if (sortOrder === "start-end") {
-        return new Date(a.date) - new Date(b.date); // Ascending order
-      } else {
-        return new Date(b.date) - new Date(a.date); // Descending order
-      }
-    });
+  const filteredData = dummyData.filter((item) => {
+    const matchesSearch =
+      item.name.toLowerCase().includes(search.toLowerCase()) ||
+      item.email.toLowerCase().includes(search.toLowerCase());
+    const matchesSubscription = subscription
+      ? item.subscriptionType === subscription
+      : true;
+
+    const matchesDate =
+      (!startDate || new Date(item.date) >= new Date(startDate)) &&
+      (!endDate || new Date(item.date) <= new Date(endDate));
+
+    return matchesSearch && matchesSubscription && matchesDate;
+  });
 
   const handleRowClick = (user) => {
-    setSelectedUser(user); // Set the selected user to open the modal
+    setSelectedUser(user); // Open the modal with selected user details
   };
 
   return (
@@ -137,15 +134,13 @@ const UserTable = () => {
         setStartDate={setStartDate}
         endDate={endDate}
         setEndDate={setEndDate}
-        sortOrder={sortOrder}
-        setSortOrder={setSortOrder}
       />
       <Table data={filteredData} onRowClick={handleRowClick} />
       <AnimatePresence>
         {selectedUser && (
           <UserModal
             user={selectedUser}
-            onClose={() => setSelectedUser(null)} // Close modal
+            onClose={() => setSelectedUser(null)}
           />
         )}
       </AnimatePresence>
