@@ -17,7 +17,7 @@ const UserModal = ({ user, onClose }) => {
   const modalVariants = {
     hidden: { opacity: 0, x: "200%" }, // Hidden state: moves out of view
     visible: { opacity: 1, x: "0%" }, // Visible state: slides into view
-    exit: { opacity: 0, x: "200%" }, // Exit state: moves back out of view
+    exit: { opacity: 0, x: "200%" }, 
   };
 
   return (
