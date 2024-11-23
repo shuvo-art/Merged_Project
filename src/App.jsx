@@ -13,12 +13,13 @@ import PrivateRoute from "./Private/PrivateRoutes";
 import OrderManagement from "./pages/Dashboard/OrderManagement";
 import AddQuestionnaire from "./pages/Dashboard/AddQuestionnaire";
 import MakeAdmin from "./pages/Dashboard/MakeAdmin";
-import Subscription from "./pages/Authentication/Subscription";
+import Subscription from "./pages/Subscription/Subscription";
 import ForgotPassword from "./pages/Authentication/ForgotPasswordForm";
 import VerificationCode from "./pages/Authentication/OTPVerificationForm";
 import ResetPasswordForm from "./pages/Authentication/ResetPasswordForm";
 import Congratulations from "./pages/Authentication/Congratulations";
 import PreviewQuestion from "./components/Dashboard/Questionnarie/PreviewQuestion";
+import CouponCode from "./pages/Subscription/CouponCode";
 
 function Routers() {
   const [loading, setLoading] = useState(true);
@@ -108,11 +109,20 @@ function Routers() {
           }
         />
         <Route
-          path="subscription"
+          path="subscription/subscription"
           element={
             <>
               <PageTitle title="alwways | Subscription" />
               <Subscription />
+            </>
+          }
+        />
+        <Route
+          path="subscription/couponCode"
+          element={
+            <>
+              <PageTitle title="alwways | Subscription" />
+              <CouponCode />
             </>
           }
         />
