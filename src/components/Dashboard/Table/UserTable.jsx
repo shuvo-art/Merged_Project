@@ -96,7 +96,7 @@ const dummyData = [
   // Add more items as needed
 ];
 
-const UserTable = () => {
+const UserTable = ({isOrderManagement}) => {
   const [search, setSearch] = useState("");
   const [subscription, setSubscription] = useState("");
   const [startDate, setStartDate] = useState(null);
@@ -135,7 +135,7 @@ const UserTable = () => {
         endDate={endDate}
         setEndDate={setEndDate}
       />
-      <Table data={filteredData} onRowClick={handleRowClick} />
+      <Table isOrderManagement={isOrderManagement} data={filteredData} onRowClick={handleRowClick} />
       <AnimatePresence>
         {selectedUser && (
           <UserModal
