@@ -121,7 +121,7 @@ function Routers() {
           path="subscription/couponCode"
           element={
             <>
-              <PageTitle title="alwways | Subscription" />
+              <PageTitle title="alwways | Coupon Code" />
               <CouponCode />
             </>
           }
@@ -130,7 +130,7 @@ function Routers() {
           path="settings/termsAndConditions"
           element={
             <>
-              <PageTitle title="Terms and Conditions" />
+              <PageTitle title="alwways | Terms and Conditions" />
               <TermsAndCondition />
             </>
           }
@@ -139,7 +139,7 @@ function Routers() {
           path="settings/privacyAndPolicy"
           element={
             <>
-              <PageTitle title="Privacy And Policy" />
+              <PageTitle title="alwways | Privacy And Policy" />
               <PrivacyAndPolicy />
             </>
           }

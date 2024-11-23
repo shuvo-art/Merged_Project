@@ -39,7 +39,7 @@ const Dashboard = () => {
       <div className="mt-6">
         <IncomeReport />
       </div>
-      <UserTable />
+      <UserTable isDashboard = {true} />
     </div>
   );
 };

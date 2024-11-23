@@ -66,7 +66,7 @@ const MakeAdmin = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 !">
       <div className="w-full flex items-center justify-between">
         <h1 className="text-2xl font-medium text-black">Make Admin</h1>
         <button
@@ -78,10 +78,10 @@ const MakeAdmin = () => {
       </div>
 
       {/* Admin Table */}
-      <div className="mt-6">
+      <div className="mt-6 !bg-white">
         <table className="w-full border-collapse border rounded-lg">
           <thead>
-            <tr className="bg-gray-200 border-b">
+            <tr className="bg-white border-b">
               <th className="px-4 py-2 text-left">S.ID</th>
               <th className="px-4 py-2 text-left">Name</th>
               <th className="px-4 py-2 text-left">Email</th>

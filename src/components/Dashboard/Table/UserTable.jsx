@@ -7,7 +7,7 @@ import { dummyData } from "../../../database/DummyData.js";
 
 
 
-const UserTable = ({isOrderManagement}) => {
+const UserTable = ({isDashboard, isOrderManagement}) => {
   const [search, setSearch] = useState("");
   const [subscription, setSubscription] = useState("");
   const [startDate, setStartDate] = useState(null);
@@ -34,7 +34,7 @@ const UserTable = ({isOrderManagement}) => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-6 ">
       <h1 className="text-xl font-bold mb-4">Subscriber</h1>
       <FilterBar
         search={search}
@@ -46,7 +46,7 @@ const UserTable = ({isOrderManagement}) => {
         endDate={endDate}
         setEndDate={setEndDate}
       />
-      <Table isOrderManagement={isOrderManagement} data={filteredData} onRowClick={handleRowClick} />
+      <Table isDashboard = {isDashboard} isOrderManagement={isOrderManagement} data={filteredData} onRowClick={handleRowClick} />
       <AnimatePresence>
         {selectedUser && (
           <UserModal
