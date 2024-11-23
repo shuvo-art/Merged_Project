@@ -21,9 +21,15 @@ const TableRow = ({ item, onRowClick, isOrderManagement, isDashboard }) => {
       <td className="px-4 py-2">{item.email}</td>
       <td className="px-4 py-2">{item.contactNumber}</td>
       <td className="px-4 py-2">{item.location}</td>
-      {
-        !isDashboard 
-      }
+      {!isDashboard && (
+        <td
+          className={`px-4 py-2 ${
+            item.status === "confirm" ? "text-green-500" : "text-red-500"
+          }`}
+        >
+          {item?.status}
+        </td>
+      )}
       {/* Conditionally render Subscription Type */}
       {!isOrderManagement && (
         <td className="px-4 py-2">{item.subscriptionType}</td>
