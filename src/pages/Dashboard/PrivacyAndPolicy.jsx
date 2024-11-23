@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import FullScreenRichTextEditor from "../../components/RichTextEditor/RichTextEditor";
 
 const PrivacyAndPolicy = () => {
   return (
-    <div>PrivacyAndPolicy</div>
-  )
-}
+    <div>
+      <p className="text-3xl font-bold mb-8 text-black">Privacy and policy</p>
+      <FullScreenRichTextEditor />
+    </div>
+  );
+};
 
-export default PrivacyAndPolicy
+export default PrivacyAndPolicy;
