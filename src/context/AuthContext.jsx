@@ -8,9 +8,12 @@ export const AuthProvider = ({ children }) => {
     token: null,
     role: null,
     email: null,
+    firstname: null,
+    lastname: null,
+    profilePicture: null,
     id: null,
   });
-  const [otpEmail, setOtpEmail] = useState("")
+  const [otpEmail, setOtpEmail] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,13 +31,23 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    setAuth({ token: null, role: null, email: null, id: null });
+    setAuth({
+      token: null,
+      role: null,
+      email: null,
+      firstname: null,
+      lastname: null,
+      profilePicture: null,
+      id: null,
+    });
     localStorage.removeItem("auth");
     navigate("/auth/signin");
   };
 
   return (
-    <AuthContext.Provider value={{ auth, login, logout, otpEmail, setOtpEmail}}>
+    <AuthContext.Provider
+      value={{ auth, login, logout, otpEmail, setOtpEmail }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -15,10 +15,10 @@ const SignIn = () => {
 
   // redirect if token exists
   useEffect(() => {
-    if(auth.token) {
+    if (auth.token) {
       return navigate("/"); // Redirect to dashboard if token exists
     }
-  }, [auth])
+  }, [auth]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,10 +31,27 @@ const SignIn = () => {
         }
       );
 
-      const { _id, email: userEmail, role, token } = response.data;
+      console.log(response.data);
+      const {
+        _id,
+        firstname,
+        lastname,
+        profilePicture,
+        email: userEmail,
+        role,
+        token,
+      } = response.data;
 
       // Save user data in context and localStorage
-      login({ id: _id, email: userEmail, role, token });
+      login({
+        id: _id,
+        firstname,
+        lastname,
+        profilePicture,
+        email: userEmail,
+        role,
+        token,
+      });
       navigate("/"); // Redirect to dashboard
     } catch (err) {
       setError("Invalid credentials. Please try again.");
@@ -56,7 +73,7 @@ const SignIn = () => {
         {/* Login Form Section */}
         <div className="flex-1 w-full max-w-md ">
           <h2 className="text-5xl font-medium mb-4 text-#364636 text-center">
-           Login To Account
+            Login To Account
           </h2>
           <p className="text-[#364636] mb-6 text-sm font-medium text-center">
             Please enter your email and password to continue

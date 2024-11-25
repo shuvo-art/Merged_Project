@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import ClickOutside from "../ClickOutside";
 import UserOne from "../../images/user/user-01.png";
+import { AuthContext } from "../../context/AuthContext";
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const { auth } = useContext(AuthContext);
+  console.log(auth);
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       <Link
@@ -19,7 +21,7 @@ const DropdownUser = () => {
 
         <span className="hidden text-right lg:block">
           <span className="block text-lg font-medium text-[#364636] ">
-            Thomas Anree
+            {auth?.firstname} {auth?.lastname}
           </span>
         </span>
       </Link>
