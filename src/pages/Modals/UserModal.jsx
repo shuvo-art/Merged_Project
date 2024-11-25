@@ -42,7 +42,7 @@ const UserModal = ({ user, onClose, isOrderManagement }) => {
             <h2 className="mt-2 text-lg font-semibold text-[#FAF1E6] ">
               {user.name}
             </h2>
-            <p className="text-sm text-[#FAF1E6]">{user.role || "User"}</p>
+            <p className="text-sm text-[#FAF1E6]">{user.role || "user"}</p>
           </div>
           <button
             onClick={onClose}
