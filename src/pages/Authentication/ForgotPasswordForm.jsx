@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import login_image from "../../images/login/login_page_logo.png";
+import { AuthContext } from "../../context/AuthContext";
 
 const ForgetPasswordForm = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
-
+  const {setOtpEmail} = useContext(AuthContext)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -28,6 +29,7 @@ const ForgetPasswordForm = () => {
         { email }
       );
       console.log(response.data)
+      setOtpEmail(email)
 
       // Show success message
       toast.success("Verification email sent. Please check your inbox.");

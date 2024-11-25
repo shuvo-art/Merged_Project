@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     email: null,
     id: null,
   });
-
+  const [otpEmail, setOtpEmail] = useState("")
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ auth, login, logout }}>
+    <AuthContext.Provider value={{ auth, login, logout, otpEmail, setOtpEmail}}>
       {children}
     </AuthContext.Provider>
   );

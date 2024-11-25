@@ -12,7 +12,6 @@ const SignIn = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { login, auth } = useContext(AuthContext);
-0
 
   // redirect if token exists
   useEffect(() => {
