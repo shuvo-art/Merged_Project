@@ -20,6 +20,7 @@ import ResetPasswordForm from "./pages/Authentication/ResetPasswordForm";
 import Congratulations from "./pages/Authentication/Congratulations";
 import PreviewQuestion from "./components/Dashboard/Questionnarie/PreviewQuestion";
 import CouponCode from "./pages/Subscription/CouponCode";
+import AdminProfile from "./pages/Dashboard/Profile";
 
 function Routers() {
   const [loading, setLoading] = useState(true);
@@ -77,7 +78,7 @@ function Routers() {
           element={
             <>
               <PageTitle title="alwways | Profile" />
-              <Profile />
+              <AdminProfile />
             </>
           }
         />
