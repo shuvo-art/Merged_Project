@@ -57,7 +57,7 @@ export const dummyData = [
     subscriptionType: "Free",
     price: 612,
     date: new Date(new Date().setDate(new Date().getDate() - 23)),
-    status: "confirm",
+    status: "pending",
   },
   {
     id: "#12338",
