@@ -170,12 +170,14 @@ const AdminProfile = () => {
                     className="w-full border rounded px-4 py-2"
                   />
                 </div>
-                <button
-                  type="submit"
-                  className="bg-[#8CAB91] text-white px-4 py-2 rounded-lg w-full"
-                >
-                  Save & Changes
-                </button>
+                <div className=" flex items-center justify-center">
+                  <button
+                    type="submit"
+                    className="bg-[#8CAB91] text-white rounded-lg  p-5"
+                  >
+                    Save & Changes
+                  </button>
+                </div>
               </form>
             </motion.div>
           )}
@@ -227,7 +229,7 @@ const AdminProfile = () => {
                 <div className=" flex items-center justify-center">
                   <button
                     type="submit"
-                    className="bg-[#8CAB91] text-white rounded-lg  py-5 px-[10px]"
+                    className="bg-[#8CAB91] text-white rounded-lg  p-5"
                   >
                     Save & Changes
                   </button>
