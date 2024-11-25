@@ -1,7 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
+import BookCollection from "../Dashboard/OrderedBook";
 
-const UserModal = ({ user, onClose }) => {
+const UserModal = ({ user, onClose, isOrderManagement }) => {
   if (!user) return null; // If no user is selected, don't render the modal.
 
   const formatDate = (date) => {
@@ -21,9 +22,9 @@ const UserModal = ({ user, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 mt-10">
       <motion.div
-        className="bg-white rounded-lg shadow-lg w-1/3 relative"
+        className="bg-white rounded-lg shadow-lg w-1/3 max-h-[100%] relative overflow-hidden"
         variants={modalVariants}
         initial="hidden"
         animate="visible"
@@ -52,7 +53,7 @@ const UserModal = ({ user, onClose }) => {
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-4 overflow-y-auto max-h-[70vh]">
           <div>
             <h3 className="font-semibold">Name</h3>
             <p>{user.name}</p>
@@ -77,6 +78,11 @@ const UserModal = ({ user, onClose }) => {
             <h3 className="font-semibold">Address</h3>
             <p>{user.location || "Not Available"}</p>
           </div>
+          {isOrderManagement && (
+            <div>
+              <BookCollection />
+            </div>
+          )}
         </div>
       </motion.div>
     </div>

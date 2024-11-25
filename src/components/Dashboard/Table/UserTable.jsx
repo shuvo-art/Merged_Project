@@ -50,6 +50,8 @@ const UserTable = ({isDashboard, isOrderManagement}) => {
       <AnimatePresence>
         {selectedUser && (
           <UserModal
+           isOrderManagement={isOrderManagement}
+            isDashboard={isDashboard}
             user={selectedUser}
             onClose={() => setSelectedUser(null)}
           />
