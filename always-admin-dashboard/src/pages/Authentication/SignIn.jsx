@@ -18,7 +18,7 @@ const SignIn = () => {
     if (auth.token) {
       return navigate("/"); // Redirect to dashboard if token exists
     }
-  }, [auth]);
+  }, [auth, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
